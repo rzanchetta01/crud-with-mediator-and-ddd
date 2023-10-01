@@ -26,7 +26,7 @@ public class GetByIdPlayerHandler : IRequestHandler<GetByIdPlayerQuery, Response
             var data = await _repository.GetByIdAsync(request.Id, cancellationToken);
             var code = data is null ? HttpStatusCode.NotFound : HttpStatusCode.OK;
 
-            return new ResponseTemplate(code, data);
+            return data != null ? new ResponseTemplate(code, _mapper.Map(data)) : new ResponseTemplate(HttpStatusCode.BadRequest);
         }
         catch (Exception e)
         {
