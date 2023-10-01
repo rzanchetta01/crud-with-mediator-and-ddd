@@ -4,4 +4,4 @@ public record TeamStatsDto
 (
     Guid TeamId,
     short Title
-){ }
+);

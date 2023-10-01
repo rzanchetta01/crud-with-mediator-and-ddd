@@ -7,4 +7,4 @@ public record PlayerDto
     short Age,
     Guid TeamId,
     decimal Salary
-) { }
+);

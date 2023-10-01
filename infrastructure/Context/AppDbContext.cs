@@ -97,10 +97,13 @@ public partial class AppDbContext : DbContext
 
         modelBuilder.Entity<TeamStat>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("team_stats");
-
+            entity.HasKey(e => e.Id).HasName("team_stats_pkey");
+            
+            entity.ToTable("team_stats");
+            
+            entity.Property(e => e.Id)
+                .HasDefaultValueSql("uuid_generate_v4()")
+                .HasColumnName("id");
             entity.Property(e => e.TeamId).HasColumnName("team_id");
             entity.Property(e => e.Title).HasColumnName("title");
 

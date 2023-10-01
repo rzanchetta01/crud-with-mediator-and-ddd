@@ -11,4 +11,4 @@ public record PlayerStatsDto
     short Assists,
     short Turnover,
     DateTime MatchDate
-) { }
+);
