@@ -38,6 +38,9 @@ public partial class AppDbContext : DbContext
                 .HasColumnName("salary");
             entity.Property(e => e.TeamId).HasColumnName("team_id");
 
+            entity.HasIndex(e => e.Name)
+                .IsUnique();
+            
             entity.HasOne(d => d.Team).WithMany(p => p.Players)
                 .HasForeignKey(d => d.TeamId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -93,6 +96,10 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.Name)
                 .HasMaxLength(150)
                 .HasColumnName("name");
+            
+            
+            entity.HasIndex(e => e.Name)
+                .IsUnique();
         });
 
         modelBuilder.Entity<TeamStat>(entity =>
@@ -107,6 +114,10 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.TeamId).HasColumnName("team_id");
             entity.Property(e => e.Title).HasColumnName("title");
 
+            
+            entity.HasIndex(e => e.TeamId)
+                .IsUnique();
+            
             entity.HasOne(d => d.Team).WithMany()
                 .HasForeignKey(d => d.TeamId)
                 .HasConstraintName("team_stats_team_id_fkey");

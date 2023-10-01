@@ -1,6 +1,7 @@
 
-using application.PlayerStats;
+using application.Mediator.PlayerStats;
 using domain.Dto;
+using domain.Network;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,38 +19,38 @@ namespace api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<ICollection<PlayerStatsDto>>> GetAll(CancellationToken cancellationToken)
+        public async Task<ResponseTemplate> GetAll(CancellationToken cancellationToken)
         {
             var result = await _mediator.Send(new GetAllPlayerStatsQuery(), cancellationToken);
-            return Ok(result);
+            return result;
         }
 
         [HttpGet("{id:guid}")]
-        public async Task<ActionResult<PlayerStatsDto>> GetById(Guid id, CancellationToken cancellationToken)
+        public async Task<ResponseTemplate> GetById(Guid id, CancellationToken cancellationToken)
         {
             var result = await _mediator.Send(new GetByIdPlayerStatsQuery(id), cancellationToken);
-            return Ok(result);
+            return result;
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post(PlayerStatsDto data, CancellationToken cancellationToken)
+        public async Task<ResponseTemplate> Post(PlayerStatsDto data, CancellationToken cancellationToken)
         {
-            await _mediator.Send(new CreatePlayerStatsCommand(data), cancellationToken);
-            return Ok();
+            var result = await _mediator.Send(new CreatePlayerStatsCommand(data), cancellationToken);
+            return result;
         }
 
         [HttpDelete]
-        public async Task<ActionResult> Delete(PlayerStatsDto data, CancellationToken cancellationToken)
+        public async Task<ResponseTemplate> Delete(PlayerStatsDto data, CancellationToken cancellationToken)
         {
-            await _mediator.Send(new DeletePlayerStatsCommand(data), cancellationToken);
-            return Ok();
+            var result = await _mediator.Send(new DeletePlayerStatsCommand(data), cancellationToken);
+            return result;
         }
         
         [HttpPut]
-        public async Task<ActionResult> Update(PlayerStatsDto data, CancellationToken cancellationToken)
+        public async Task<ResponseTemplate> Update(PlayerStatsDto data, CancellationToken cancellationToken)
         {
-            await _mediator.Send(new UpdatePlayerStatsCommand(data), cancellationToken);
-            return Ok();
+            var result = await _mediator.Send(new UpdatePlayerStatsCommand(data), cancellationToken);
+            return result;
         }
     }
 }

@@ -1,6 +1,7 @@
 using application;
 using domain.Entities;
 using domain.Mapping;
+using FluentValidation;
 using infrastructure;
 using infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +19,7 @@ builder.Services.AddScoped<IRepository<PlayerStat>, Repository<PlayerStat>>();
 builder.Services.AddScoped<IRepository<TeamStat>, Repository<TeamStat>>();
 
 builder.Services.AddMediatR(c => c.RegisterServicesFromAssemblyContaining<ApplicationStartup>());
+builder.Services.AddValidatorsFromAssemblyContaining<ApplicationStartup>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

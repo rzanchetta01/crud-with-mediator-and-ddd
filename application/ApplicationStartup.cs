@@ -1,6 +1,6 @@
 ﻿namespace application;
 
-public class ApplicationStartup
+public abstract class ApplicationStartup
 {
     
 }

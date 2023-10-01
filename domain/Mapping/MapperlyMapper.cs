@@ -23,6 +23,7 @@ public partial class MapperlyMapper
     public partial PlayerStatsDto Map(PlayerStat playerStat);
     public partial TeamDto Map(Team team);
     public partial TeamStatsDto Map(TeamStat teamStat);
+    
     public partial ICollection<PlayerDto> Map(ICollection<Player> player);
     public partial ICollection<PlayerStatsDto> Map(ICollection<PlayerStat> playerStat);
     public partial ICollection<TeamDto> Map(ICollection<Team> team);

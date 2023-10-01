@@ -7,12 +7,17 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="FluentValidation" Version="11.7.1" />
       <PackageReference Include="MediatR" Version="12.1.1" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\domain\domain.csproj" />
       <ProjectReference Include="..\infrastructure\infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Mediator\" />
     </ItemGroup>
 
 </Project>
